@@ -4,24 +4,31 @@
    ═══════════════════════════════════════════════════ */
 
 :root {
-  --green-dark:   #004d2a;
-  --green-mid:    #006d38;
-  --green-bright: #00a556;
-  --green-glow:   #00c866;
-  --gold:         #d4a017;
-  --gold-light:   #f0c040;
-  --bg-dark:      #0c1117;
-  --bg-panel:     #111820;
-  --bg-card:      #161e28;
-  --bg-input:     #1c2636;
+  /* ── Official NAUB colour palette (extracted from naub.edu.ng) ──
+     Primary:  deep military green  #1B4332  (navbar/header)
+     Accent:   NAUB gold/olive      #C8952A  (crest, highlights)
+     Dark bg:  near-black green     #0D1F16
+     Mid bg:   dark panel           #111E16
+     Card bg:  dark card            #162013
+  ── */
+  --green-dark:   #1B4332;
+  --green-mid:    #2D6A4F;
+  --green-bright: #40916C;
+  --green-glow:   #52B788;
+  --gold:         #C8952A;
+  --gold-light:   #E9B949;
+  --bg-dark:      #0D1F16;
+  --bg-panel:     #111E16;
+  --bg-card:      #162013;
+  --bg-input:     #1C2A1F;
   --border:       rgba(255,255,255,0.07);
   --border-mid:   rgba(255,255,255,0.12);
-  --text-primary: #e8edf5;
-  --text-muted:   #6b7d96;
-  --text-dim:     #3e5068;
-  --user-bubble:  linear-gradient(135deg, #005f30, #007a3d);
-  --bot-bubble:   #1a2535;
-  --shadow-glow:  0 0 40px rgba(0,165,86,0.12);
+  --text-primary: #E8EDF5;
+  --text-muted:   #6B8C78;
+  --text-dim:     #3E6050;
+  --user-bubble:  linear-gradient(135deg, #1B4332, #2D6A4F);
+  --bot-bubble:   #1A2B20;
+  --shadow-glow:  0 0 40px rgba(82,183,136,0.12);
   --radius-lg:    1rem;
   --radius-xl:    1.5rem;
   --radius-pill:  999px;
@@ -57,9 +64,9 @@ body {
   filter: blur(80px); opacity: 0.15;
   animation: driftOrb 18s ease-in-out infinite alternate;
 }
-.bg-orb--1 { width: 600px; height: 600px; background: radial-gradient(circle, #006d38, transparent); top: -200px; left: -200px; animation-delay: 0s; }
-.bg-orb--2 { width: 400px; height: 400px; background: radial-gradient(circle, #d4a017, transparent); bottom: -100px; right: 300px; animation-delay: -6s; }
-.bg-orb--3 { width: 500px; height: 500px; background: radial-gradient(circle, #004d2a, transparent); top: 40%; right: -100px; animation-delay: -12s; }
+.bg-orb--1 { width: 600px; height: 600px; background: radial-gradient(circle, #2D6A4F, transparent); top: -200px; left: -200px; animation-delay: 0s; }
+.bg-orb--2 { width: 400px; height: 400px; background: radial-gradient(circle, #C8952A, transparent); bottom: -100px; right: 300px; animation-delay: -6s; }
+.bg-orb--3 { width: 500px; height: 500px; background: radial-gradient(circle, #1B4332, transparent); top: 40%; right: -100px; animation-delay: -12s; }
 
 @keyframes driftOrb {
   0%   { transform: translate(0, 0) scale(1); }
@@ -85,14 +92,22 @@ body {
 .naub-logo {
   display: flex; align-items: center; gap: 0.875rem;
 }
+/* Real NAUB logo image */
+.logo-img {
+  width: 56px; height: 56px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 8px rgba(200,149,42,0.35));
+}
+/* Fallback SVG emblem */
 .logo-emblem {
   width: 48px; height: 48px;
   background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
-  border: 1.5px solid rgba(0,165,86,0.3);
+  border: 1.5px solid rgba(82,183,136,0.3);
   border-radius: 12px;
   display: grid; place-items: center;
   color: var(--green-glow);
-  box-shadow: 0 0 16px rgba(0,165,86,0.2), inset 0 1px 0 rgba(255,255,255,0.06);
+  box-shadow: 0 0 16px rgba(82,183,136,0.2), inset 0 1px 0 rgba(255,255,255,0.06);
   flex-shrink: 0;
 }
 .logo-text { display: flex; flex-direction: column; }
@@ -128,8 +143,8 @@ body {
 .quick-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); }
 .topic-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .topic-chip {
-  background: rgba(0,109,56,0.12);
-  border: 1px solid rgba(0,165,86,0.2);
+  background: rgba(45,106,79,0.12);
+  border: 1px solid rgba(82,183,136,0.2);
   color: #9de0bc;
   font-size: 0.8rem; font-weight: 500;
   padding: 0.45rem 0.85rem;
@@ -139,11 +154,11 @@ body {
   white-space: nowrap;
 }
 .topic-chip:hover {
-  background: rgba(0,165,86,0.22);
+  background: rgba(82,183,136,0.22);
   border-color: var(--green-glow);
   color: #fff;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0,165,86,0.2);
+  box-shadow: 0 4px 12px rgba(82,183,136,0.2);
 }
 .topic-chip:active { transform: translateY(0); }
 
@@ -191,11 +206,11 @@ body {
 .bot-avatar {
   width: 44px; height: 44px;
   background: linear-gradient(135deg, var(--green-mid), #004022);
-  border: 1.5px solid rgba(0,165,86,0.35);
+  border: 1.5px solid rgba(82,183,136,0.35);
   border-radius: 50%;
   display: grid; place-items: center;
   color: var(--green-glow);
-  box-shadow: 0 0 16px rgba(0,165,86,0.25);
+  box-shadow: 0 0 16px rgba(82,183,136,0.25);
 }
 .status-dot {
   position: absolute; bottom: 1px; right: 1px;
@@ -254,7 +269,7 @@ body {
 .msg-avatar--bot {
   background: linear-gradient(135deg, var(--green-mid), #003820);
   color: var(--green-glow);
-  border: 1px solid rgba(0,165,86,0.3);
+  border: 1px solid rgba(82,183,136,0.3);
   font-size: 1rem;
 }
 .msg-avatar--user {
@@ -281,9 +296,17 @@ body {
 }
 .msg-bubble--user {
   background: var(--user-bubble);
-  border: 1px solid rgba(0,165,86,0.25);
+  border: 1px solid rgba(82,183,136,0.25);
   border-bottom-right-radius: 4px;
   color: #fff;
+}
+
+/* Warning bubble — shown for gibberish / invalid input (not logged to DB) */
+.msg-bubble--warning {
+  background: #2A1F0A;
+  border: 1px solid rgba(200,149,42,0.45);
+  border-bottom-left-radius: 4px;
+  color: #F0D090;
 }
 
 /* Markdown inside bot bubbles */
@@ -304,7 +327,7 @@ body {
 }
 .msg-bubble--bot li::marker { color: var(--green-glow); }
 .msg-bubble--bot table { border-collapse: collapse; margin: 0.75rem 0; width: 100%; font-size: 0.85em; }
-.msg-bubble--bot th { background: rgba(0,109,56,0.2); padding: 0.4rem 0.7rem; text-align: left; color: var(--green-glow); font-size: 0.8em; border-bottom: 1px solid rgba(0,165,86,0.2); }
+.msg-bubble--bot th { background: rgba(45,106,79,0.2); padding: 0.4rem 0.7rem; text-align: left; color: var(--green-glow); font-size: 0.8em; border-bottom: 1px solid rgba(82,183,136,0.2); }
 .msg-bubble--bot td { padding: 0.4rem 0.7rem; border-bottom: 1px solid var(--border); }
 .msg-bubble--bot tr:last-child td { border-bottom: none; }
 .msg-bubble--bot a { color: var(--green-glow); text-decoration: underline; }
@@ -344,8 +367,8 @@ body {
 
 /* Welcome card */
 .welcome-card {
-  background: linear-gradient(135deg, rgba(0,77,42,0.15), rgba(0,109,56,0.08));
-  border: 1px solid rgba(0,165,86,0.2);
+  background: linear-gradient(135deg, rgba(27,67,50,0.15), rgba(45,106,79,0.08));
+  border: 1px solid rgba(82,183,136,0.2);
   border-radius: var(--radius-xl);
   padding: 1.5rem;
   text-align: center;
@@ -367,13 +390,13 @@ body {
 .suggestions-bar::-webkit-scrollbar { display: none; }
 .suggestion-pill {
   white-space: nowrap;
-  background: rgba(0,109,56,0.1); border: 1px solid rgba(0,165,86,0.18);
+  background: rgba(45,106,79,0.1); border: 1px solid rgba(82,183,136,0.18);
   border-radius: var(--radius-pill);
   color: #9de0bc; font-size: 0.78rem; font-weight: 500;
   padding: 0.35rem 0.8rem; cursor: pointer;
   transition: all var(--transition); flex-shrink: 0;
 }
-.suggestion-pill:hover { background: rgba(0,165,86,0.2); color: #fff; border-color: var(--green-glow); }
+.suggestion-pill:hover { background: rgba(82,183,136,0.2); color: #fff; border-color: var(--green-glow); }
 
 /* ─── Chat Footer ─────────────────────────────────────── */
 .chat-footer {
@@ -405,8 +428,8 @@ body {
 .msg-input::-webkit-scrollbar { display: none; }
 .msg-input::placeholder { color: var(--text-dim); }
 .msg-input:focus {
-  border-color: rgba(0,165,86,0.5);
-  box-shadow: 0 0 0 3px rgba(0,165,86,0.1);
+  border-color: rgba(82,183,136,0.5);
+  box-shadow: 0 0 0 3px rgba(82,183,136,0.1);
 }
 .send-btn {
   width: 48px; height: 48px; flex-shrink: 0;
@@ -415,9 +438,9 @@ body {
   color: #fff; cursor: pointer;
   display: grid; place-items: center;
   transition: all var(--transition);
-  box-shadow: 0 4px 12px rgba(0,165,86,0.3);
+  box-shadow: 0 4px 12px rgba(82,183,136,0.3);
 }
-.send-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,165,86,0.4); filter: brightness(1.1); }
+.send-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(82,183,136,0.4); filter: brightness(1.1); }
 .send-btn:active { transform: translateY(0); }
 .send-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 

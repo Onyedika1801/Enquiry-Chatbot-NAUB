@@ -18,8 +18,15 @@
   <aside class="hero-panel">
     <div class="hero-content">
       <div class="naub-logo">
-        <div class="logo-emblem">
-          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <img
+          src="https://naub.edu.ng/wp-content/uploads/2023/03/NAUB-LOGO-PNG-.png"
+          alt="NAUB Crest"
+          class="logo-img"
+          onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex';"
+        />
+        <!-- Fallback emblem shown only if logo image fails to load -->
+        <div class="logo-emblem" id="logoFallback" style="display:none;" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="2.5" fill="none"/>
             <path d="M16 46 L16 18 L26 18 L32 30 L38 18 L48 18 L48 46" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
             <path d="M20 38 L44 38" stroke="currentColor" stroke-width="1.5"/>
