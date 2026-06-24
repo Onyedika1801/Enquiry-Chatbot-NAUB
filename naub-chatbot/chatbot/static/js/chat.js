@@ -95,7 +95,7 @@
     scrollBottom();
   }
 
-  function appendBotMsg(text, animate = true) {
+  function appendBotMsg(text, animate = true, variant = 'default') {
     const group = document.createElement('div');
     group.className = 'msg-group';
     if (animate) group.style.animation = 'fadeSlideIn 0.3s ease both';
@@ -105,10 +105,13 @@
 
     const avatar = document.createElement('div');
     avatar.className = 'msg-avatar msg-avatar--bot';
-    avatar.textContent = '🤖';
+    // Use a caution emoji for warning messages so users notice
+    avatar.textContent = variant === 'warning' ? '⚠️' : '🤖';
 
     const bubble = document.createElement('div');
-    bubble.className = 'msg-bubble msg-bubble--bot';
+    bubble.className = variant === 'warning'
+      ? 'msg-bubble msg-bubble--bot msg-bubble--warning'
+      : 'msg-bubble msg-bubble--bot';
     bubble.innerHTML = renderMarkdown(text);
 
     row.appendChild(avatar);
@@ -216,6 +219,9 @@
 
       if (data.error) {
         appendBotMsg('⚠️ Sorry, something went wrong. Please try again.');
+      } else if (data.intent === 'invalid_input') {
+        // Gibberish / non-question: show a warning bubble, do not save to history
+        appendBotMsg(data.response, true, 'warning');
       } else {
         appendBotMsg(data.response);
         saveHistory(text, data.response);

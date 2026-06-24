@@ -13,6 +13,7 @@ from chatbot.database import (
     init_db, log_conversation, get_session_history,
     get_or_create_session, get_analytics, verify_admin
 )
+from chatbot.validators import validate_query
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
@@ -202,6 +203,22 @@ class NAUBHandler(http.server.BaseHTTPRequestHandler):
             self._send_json({"error": "Message too long (max 500 chars)"}, 400)
             return
 
+        # ── Gibberish / invalid-input guard ──────────────────────────────
+        # Validate BEFORE calling the engine or writing to the database.
+        # Gibberish messages are returned with a helpful prompt but are
+        # never stored in conversation_logs.
+        validation = validate_query(user_message)
+        if not validation:
+            self._send_json({
+                "response": validation.message,
+                "intent":   "invalid_input",
+                "matched":  False,
+                "logged":   False,
+                "session_id": session_id,
+            })
+            return
+        # ─────────────────────────────────────────────────────────────────
+
         engine = get_engine()
         result = engine.get_response(user_message)
 
@@ -219,6 +236,7 @@ class NAUBHandler(http.server.BaseHTTPRequestHandler):
             "response": result["response"],
             "intent": result["intent"],
             "matched": result["matched"],
+            "logged":  True,
             "session_id": session_id,
         })
 
